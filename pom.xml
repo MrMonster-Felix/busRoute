@@ -1,14 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!--	pom模型版本	-->
 	<modelVersion>4.0.0</modelVersion>
+<!--	组织名，全球唯一的标识符-->
 	<groupId>edu.sdlg</groupId>
+<!--	构件的标识符-->
 	<artifactId>test</artifactId>
+<!--	项目产生的构建类型，jar，war，pom，ear-->
 	<packaging>war</packaging>
+<!--	项目当前版本号-->
 	<version>0.0.1-SNAPSHOT</version>
+<!--	项目名-->
 	<name>test Maven Webapp</name>
+<!--	项目的主页url-->
 	<url>http://maven.apache.org</url>
+<!--依赖关系	-->
 	<dependencies>
+<!--		依赖设置-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -35,9 +44,13 @@
 			<version>2.9.0</version>
 		</dependency>
 	</dependencies>
+<!--	构建项目的信息-->
 	<build>
+
 		<defaultGoal>compile</defaultGoal>
+<!--		产生的构建文件名-->
 		<finalName>test</finalName>
+<!--		使用的插件列表-->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
