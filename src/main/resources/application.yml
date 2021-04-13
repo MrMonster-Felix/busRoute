@@ -1,0 +1,19 @@
+spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  datasource:
+    #url: jdbc:mysql://localhost:3306/sdlg?serverTimezone=UTC&characterEncoding=utf-8 
+    url: jdbc:mysql:///sdlg
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 80
+  tomcat:
+    uri-encoding: UTF-8
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

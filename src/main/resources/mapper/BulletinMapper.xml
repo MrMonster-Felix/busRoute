@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.community.dao.BulletinMapper">
+	<resultMap id="BaseResultMap" type="edu.community.bean.Bulletin">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="text" property="text" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="TINYINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, text
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from bulletin
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectBulletin" resultMap="BaseResultMap">
+	   select
+        <include refid="Base_Column_List" />
+        from bulletin limit #{start},#{end}
+	</select>
+	
+	<select id="count" resultType="int">
+	   select count(1) from bulletin
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from bulletin
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="edu.community.bean.Bulletin">
+		insert into bulletin (name, text)
+		values ( #{name,jdbcType=VARCHAR},
+		#{text,jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="insertSelective" parameterType="edu.community.bean.Bulletin">
+		insert into bulletin
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			
+			<if test="name != null">
+				name,
+			</if>
+			<if test="text != null">
+				text,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="text != null">
+				#{text,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="edu.community.bean.Bulletin">
+		update bulletin
+		<set>
+			<if test="id != null">
+				id = #{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="text != null">
+				text = #{text,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<update id="updateByPrimaryKey" parameterType="edu.community.bean.Bulletin">
+		update bulletin
+		set name = #{name,jdbcType=VARCHAR},
+		text = #{text,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	
+</mapper>
